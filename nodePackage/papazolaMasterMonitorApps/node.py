@@ -4,7 +4,6 @@ import subprocess
 import json
 
 def shell(cmd):
-#    a = subprocess.Popen('echo bringiton040902 | sudo -S '+str(cmd), shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
     a = subprocess.Popen(str(cmd), shell=True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
     return a
 
