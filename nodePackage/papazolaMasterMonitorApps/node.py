@@ -16,7 +16,7 @@ def ssh_loggedin():
 	res = []
 	portssh = config()['port_ssh']
 	a = shell('lsof -i :%s | grep ESTABLISHED' % (portssh,))
-	a = shell('lsof -i :%s ' % (portssh,))
+	#a = shell('lsof -i :%s ' % (portssh,))
 	a = a.splitlines()
 	for i in a:
 		k = []
