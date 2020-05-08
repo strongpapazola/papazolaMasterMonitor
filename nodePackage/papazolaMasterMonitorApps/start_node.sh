@@ -1,1 +1,1 @@
-python3 node.py &>/dev/null&
+python3 /opt/papazolaMasterMonitorApps/node.py &>/dev/null&
