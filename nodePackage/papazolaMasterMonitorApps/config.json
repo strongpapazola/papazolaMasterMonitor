@@ -1,0 +1,4 @@
+{
+	"webdir": "/var/www/papazolaMasterMonitor",
+	"port_ssh": "1022"
+}
