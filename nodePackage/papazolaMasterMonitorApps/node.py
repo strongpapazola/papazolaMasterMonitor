@@ -9,7 +9,7 @@ def shell(cmd):
     return a
 
 def config():
-	a = json.loads(shell('cat config.json'))
+	a = json.loads(shell('cat /opt/papazolaMasterMonitorApps/config.json'))
 	return a
 
 def ssh_loggedin():
