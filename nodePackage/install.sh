@@ -24,8 +24,9 @@ cp -r ./papazolaMasterMonitorApps /opt/
 read -p "[!] Setup a config ! [Enter]" enter
 nano /opt/papazolaMasterMonitorApps/config.json
 echo "[*] Running App Checker"
-chmod +x /opt/papazolaMasterMonitorApps/start_node.sh
-/opt/papazolaMasterMonitorApps/start_node.sh
+cp ./papazolaMasterMonitor.service /etc/systemd/system/
+systemctl start papazolaMasterMonitor.service
+systemctl enable papazolaMasterMonitor.service
 read -p 'Complete [Enter]' enter
 clear
 
