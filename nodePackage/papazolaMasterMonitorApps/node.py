@@ -15,7 +15,6 @@ def ssh_loggedin():
 	res = []
 	portssh = config()['port_ssh']
 	a = shell('lsof -i :%s | grep ESTABLISHED' % (portssh,))
-	#a = shell('lsof -i :%s ' % (portssh,))
 	a = a.splitlines()
 	for i in a:
 		k = []
@@ -104,23 +103,39 @@ webdir = config()['webdir']
 def command_check():
 	a = shell('cat '+str(webdir)+'/check.json').splitlines()[0]
 	a = json.loads(a)['run']
+	shell('echo \'{"run":"false"}\' > '+str(webdir)+'/check.json')
 	return a
 
 try:
+#	if command_check() == "true":
 	while True:
-		if command_check() == "true":
-			res = []
-			res.append(time())
+		res = []
+		res.append(time())
+		try:
 			res.append(memory_usage())
+		except Exception as e:
+			shell('echo \'memory%s\' > %s/result.json' % (str(e),webdir,))
+			exit()
+		try:
 			res.append(check_storage())
+		except Exception as e:
+			shell('echo \'checkstorage%s\' > %s/result.json' % (str(e),webdir,))
+			exit()
+		try:
 			res.append(ssh_loggedin())
+		except Exception as e:
+			shell('echo \'ssh_loggedin%s\' > %s/result.json' % (str(e),webdir,))
+			exit()
+		try:
 			res.append(portopened())
-			res = json.dumps(res)
-			shell('echo \'%s\' > %s/result.json' % (res,webdir,))
+		except Exception as e:
+			shell('echo \'portopen%s\' > %s/result.json' % (str(e),webdir,))
+			exit()
+		res = json.dumps(res)
+		shell('echo \'%s\' > %s/result.json' % (res,webdir,))
+		shell('sleep 10')
 except Exception as e:
-	error = str(e)
-	# print(error)
-	shell('echo \'%s\' > %s/result.json' % (error,webdir,))
+	shell('echo \'%s\' > %s/result.json' % (str(e),webdir,))
 
 
 
