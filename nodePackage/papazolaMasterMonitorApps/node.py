@@ -124,8 +124,10 @@ try:
 		try:
 			res.append(ssh_loggedin())
 		except Exception as e:
-			shell('echo \'ssh_loggedin%s\' > %s/result.json' % (str(e),webdir,))
-			exit()
+			#shell('echo \'ssh_loggedin%s\' > %s/result.json' % (str(e),webdir,))
+			#exit()
+			ssh_loggedin = []
+			res.append(ssh_loggedin)
 		try:
 			res.append(portopened())
 		except Exception as e:
