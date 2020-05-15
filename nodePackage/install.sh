@@ -12,7 +12,7 @@ read -p '[Enter]' enter
 clear
 echo "[*] Install on /var/www/papazolaMasterMonitor"
 echo "[!] move if it doesn't match with your webserver"
-cp -r ./papazolaMasterMonitor /var/www/
+cp -rf ./papazolaMasterMonitor /var/www/
 chmod -R 777 /var/www/papazolaMasterMonitor
 chown -R www-data:www-data /var/www/papazolaMasterMonitor
 read -p "[!] Setup a key ! [Enter]" enter
@@ -20,11 +20,11 @@ nano /var/www/papazolaMasterMonitor/index.php
 read -p '[Enter]' enter
 clear
 echo "[*] Install App on /opt/papazolaMasterMonitorApps"
-cp -r ./papazolaMasterMonitorApps /opt/
+cp -rf ./papazolaMasterMonitorApps /opt/
 read -p "[!] Setup a config ! [Enter]" enter
 nano /opt/papazolaMasterMonitorApps/config.json
 echo "[*] Running App Checker"
-cp ./papazolaMasterMonitor.service /etc/systemd/system/
+cp -rf ./papazolaMasterMonitor.service /etc/systemd/system/
 systemctl start papazolaMasterMonitor.service
 systemctl enable papazolaMasterMonitor.service
 read -p 'Complete [Enter]' enter
