@@ -27,6 +27,7 @@ echo "[*] Running App Checker"
 cp -rf ./papazolaMasterMonitor.service /etc/systemd/system/
 systemctl start papazolaMasterMonitor.service
 systemctl enable papazolaMasterMonitor.service
+systemctl status papazolaMasterMonitor.service
 read -p 'Complete [Enter]' enter
 clear
 
