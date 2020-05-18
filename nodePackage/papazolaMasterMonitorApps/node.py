@@ -24,8 +24,6 @@ def ssh_loggedin():
 				k.append(i[j])
 		res.append(k)
 	if res:
-		if res[1][9]:
-			res[0].append('STATUS')
 		if res[1]:
 			for i in range(0, len(res)):
 				res[i].pop(3)
