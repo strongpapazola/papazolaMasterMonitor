@@ -16,13 +16,14 @@ def ssh_loggedin():
 	portssh = config()['port_ssh']
 	a = shell('lsof -i :%s | grep ESTABLISHED' % (portssh,))
 	a = a.splitlines()
-	for i in a:
-		k = []
-		i = i.split(' ')
-		for j in range(0, len(i)):
-			if i[j]:
-				k.append(i[j])
-		res.append(k)
+	if a:
+		for i in a:
+			k = []
+			i = i.split(' ')
+			for j in range(0, len(i)):
+				if i[j]:
+					k.append(i[j])
+			res.append(k)
 	if res:
 		if res[1]:
 			for i in range(0, len(res)):
